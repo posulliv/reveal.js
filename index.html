@@ -67,13 +67,29 @@
 							<img width="280" height="326" src="images/big-papa-brando-apocalypse-now.jpeg" alt="Brando">
 						</a>
 					</section>
+          <section>
+					  <h2>App Model in an ORM</h2>
+            <br><br>
+					  <pre><code contenteditable>
+class User < ActiveRecord::Base
+  .
+  .
+  has_many :posts
+  has_many :roles
+  has_many :photos
+  has_many :relationships
+  .
+  .
+end
+				  	</code></pre>
+			  	</section>
 					<section data-state="alert">
 						<h2>Vietnam</h2>
-            <img src="images/stock_drupal.png">
+            <img src="images/ungrouped_schema.png">
 					</section>
 					<section data-state="soothe">
 						<h2>Peace</h2>
-            <img src="images/grouped_drupal.png">
+            <img src="images/grouped_schema.png">
 					</section>
           <section>
             <h2>Why Does That Help?</h2>
@@ -181,65 +197,6 @@ jds[0]['employees.titles'][0]['title']
           </p>
         </section>
 
-        <section>
-				  <section>
-					  <h2>Group Indexes</h2>
-            <br>
-					  <p>
-              Can contain columns from more than 1 table.
-					  </p>
-            <br>
-            <p>
-              Tables that are in a single branch of a group.
-            </p>
-          </section>
-				  <section>
-					  <h2>Creating Group Indexes</h2>
-            <br>
-					  <p>
-            <pre><code>CREATE INDEX index_name ON table_name
-( 
-  column_name, 
-  ... 
-) USING LEFT | RIGHT JOIN
-            </code></pre>
-					  </p>
-          </section>
-        </section>
-
-        <section>
-				  <section>
-					  <h2>Spatial Indexes</h2>
-            <br>
-					  <p>
-              Implemented using <em>z-order</em>
-					  </p>
-            <br>
-            <p class="fragment">
-              Transforms multi-dimensional data to one-dimension
-            </p>
-            <br>
-            <p class="fragment">
-              Problems Solved:
-            </p>
-            <ul>
-              <li class="fragment">Points in region</li>
-              <li class="fragment">Nearest neighbor</li>
-            </ul>
-          </section>
-				  <section>
-					  <h2>Creating Spatial Indexes</h2>
-            <br>
-					  <p>
-            <pre><code>CREATE INDEX index_name ON table_name
-(
-  Z_ORDER_LAT_LON(latitude_column, longitude_column)
-)
-            </code></pre>
-					  </p>
-          </section>
-        </section>
-
 				<section>
 					<h2>Execution Plans</h2>
           <br>
@@ -286,6 +243,77 @@ employees=> select * from departments;
 Time: 1.958 ms
 employees=>
           </pre>
+        </section>
+
+        <section>
+          <h2>REST API Demo</h2>
+        </section>
+
+        <section>
+				  <section>
+					  <h2>Group Indexes</h2>
+            <br>
+					  <p>
+              Can contain columns from more than 1 table.
+					  </p>
+            <br>
+            <p>
+              Tables that are in a single branch of a group.
+            </p>
+          </section>
+				  <section>
+					  <h2>Creating Group Indexes</h2>
+            <br>
+					  <p>
+            <pre><code>CREATE INDEX index_name ON table_name
+( 
+  column_name, 
+  ... 
+) USING LEFT | RIGHT JOIN
+            </code></pre>
+					  </p>
+          </section>
+        </section>
+
+        <section>
+          <h2>Multiple Indexes</h2>
+          <br><br>
+          <p>
+            What to say about index intersection/merging?
+          </p>
+        </section>
+
+        <section>
+				  <section>
+					  <h2>Spatial Indexes</h2>
+            <br>
+					  <p>
+              Implemented using <em>z-order</em>
+					  </p>
+            <br>
+            <p class="fragment">
+              Transforms multi-dimensional data to one-dimension
+            </p>
+            <br>
+            <p class="fragment">
+              Problems Solved:
+            </p>
+            <ul>
+              <li class="fragment">Points in region</li>
+              <li class="fragment">Nearest neighbor</li>
+            </ul>
+          </section>
+				  <section>
+					  <h2>Creating Spatial Indexes</h2>
+            <br>
+					  <p>
+            <pre><code>CREATE INDEX index_name ON table_name
+(
+  Z_ORDER_LAT_LON(latitude_column, longitude_column)
+)
+            </code></pre>
+					  </p>
+          </section>
         </section>
 
 				<section>
