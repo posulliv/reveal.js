@@ -200,53 +200,34 @@ jds[0]['employees.titles'][0]['title']
 				<section>
 					<h2>Execution Plans</h2>
           <br>
-          <pre>test=> EXPLAIN  SELECT customer.name,
-test->          COUNT("order".oid)
-test-> FROM     customer,
-test->          "order"
-test-> WHERE    customer.cid = "order".cid
-test-> GROUP BY customer.name ;
-                         OPERATORS
- project([Field(0), Field(1)])
-   Aggregation(GROUP BY 1 field, then: [count(*)])
-     Sort_Tree(project([Field(1), Literal(1)]))
-       project([Field(1), Literal(1)])
-         Filter_Default([flatten(test.customer, test.order)])
-           Flatten_HKeyOrdered(test.customer INNER test.order)
-             GroupScan_Default(full scan on _akiban_customer)
-(7 rows)
+          <pre>sample=> explain select * from "user" where id = 1;
+                       OPERATORS                       
+-------------------------------------------------------
+ Project_Default(user.id, user.name, user.email)
+   AncestorLookup_Default(Index(user.PRIMARY) -> user)
+     IndexScan_Default(Index(user.PRIMARY), id = 1)
+(3 rows)
 
-test=>
+sample=>
           </pre>
         </section>
 
         <section>
           <h2>Nested Result Sets</h2>
           <br>
-          <p><pre>employees=> set OutputFormat = 'json';
+          <pre>sample=> set OutputFormat = 'json';
 SET OutputFormat
-Time: 0.779 ms
-employees=> select * from departments;
-                        JSON
------------------------------------------------------
- {"dept_no":"d001","dept_name":"Marketing"}
- {"dept_no":"d002","dept_name":"Finance"}
- {"dept_no":"d003","dept_name":"Human Resources"}
- {"dept_no":"d004","dept_name":"Production"}
- {"dept_no":"d005","dept_name":"Development"}
- {"dept_no":"d006","dept_name":"Quality Management"}
- {"dept_no":"d007","dept_name":"Sales"}
- {"dept_no":"d008","dept_name":"Research"}
- {"dept_no":"d009","dept_name":"Customer Service"}
-(9 rows)
+sample=> select ** from "user" where id = 1;
+ {"id":1,"name":"posulliv","email":"padraig@akiban.com","sample.photo":[{"id":1,"user_id":1,"state":"PROFILE","date_added":"2012-10-15 17:02:22","path":"URI_FOR_IMAGE_FILE"}],"sample.post":[{"id":1,"user_id":1,"status":"this is a post!","latitude":"51.8968917","longitude":"-8.4863157"},{"id":2,"user_id":1,"status":"at the brog having a pint!","latitude":"51.8975668","longitude":"-8.4725516"}],"sample.role":[{"user_id":1,"role_name":"admin"}]}
+(1 row)
 
-Time: 1.958 ms
-employees=>
+sample=>
           </pre>
         </section>
 
         <section>
-          <h2>REST API Demo</h2>
+          <h2>REST Module</h2>
+          <br><br>
         </section>
 
         <section>
@@ -325,9 +306,9 @@ employees=>
           <br>
           <p>
             <ul>
-              <li class="fragment">server.properties</li>
-              <li class="fragment">log4j.properties</li>
-              <li class="fragment">jvm.options</li>
+              <li>server.properties</li>
+              <li>log4j.properties</li>
+              <li>jvm.options</li>
             </ul>
           </p>
         </section>
@@ -362,12 +343,12 @@ employees=>
           Tables in <em>information_schema</em>
 					</p>
           <ul>
-            <li class="fragment">server_sessions</li>
-            <li class="fragment">server_instance_summary</li>
-            <li class="fragment">server_parameters</li>
-            <li class="fragment">storage_buffer_pools</li>
-            <li class="fragment">storage_trees</li>
-            <li class="fragment">storage_io_meters</li>
+            <li>server_sessions</li>
+            <li>server_instance_summary</li>
+            <li>server_parameters</li>
+            <li>storage_buffer_pools</li>
+            <li>storage_trees</li>
+            <li>storage_io_meters</li>
           </ul>
           <br><br>
           <p class="fragment">
