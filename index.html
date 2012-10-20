@@ -6,7 +6,7 @@
 		
 		<title>Deploying and Building Your First Application with Akiban</title>
 
-		<meta name="description" content="A webinar on deploying the Akiban Server">
+		<meta name="description" content="Introdction to Akiban">
 		<meta name="author" content="Padraig O'Sullivan">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -93,25 +93,23 @@
           </section>
 				</section>
 
-        <section>
-	  			<section>
-	  				<h2>Installation</h2>
-	  				<p>
-	  					All that is required is Java!
-		  			</p>
-		  		  <a href="http://www.akiban.com/products/akiban-developer/latest#modal7">
-              <img width="160" height="200" src="images/apple_logo.png" alt="Apple">
-			  	  </a>
-            <a href="http://www.akiban.com/products/akiban-developer/latest#modal6">
-              <img width="160" height="200" src="images/windows_logo.png" alt="Windows">
-            </a>
-            <a href="http://www.akiban.com/products/akiban-developer/latest#modal9">
-              <img width="160" height="200" src="images/redhat_logo.jpeg" alt="Red Hat">
-            </a>
-            <a href="http://www.akiban.com/products/akiban-developer/latest#modal8">
-              <img width="160" height="200" src="images/ubuntu_logo.gif" alt="Ubuntu">
-            </a>
-				  </section>
+	  		<section>
+	  		  <h2>Installation</h2>
+	  		  <p>
+	  		  	All that is required is Java!
+		  	  </p>
+		  	  <a href="http://www.akiban.com/products/akiban-developer/latest#modal7">
+            <img width="160" height="200" src="images/apple_logo.png" alt="Apple">
+			    </a>
+          <a href="http://www.akiban.com/products/akiban-developer/latest#modal6">
+            <img width="160" height="200" src="images/windows_logo.png" alt="Windows">
+          </a>
+          <a href="http://www.akiban.com/products/akiban-developer/latest#modal9">
+            <img width="160" height="200" src="images/redhat_logo.jpeg" alt="Red Hat">
+          </a>
+          <a href="http://www.akiban.com/products/akiban-developer/latest#modal8">
+            <img width="160" height="200" src="images/ubuntu_logo.gif" alt="Ubuntu">
+          </a>
         </section>
 
         <section>
@@ -219,6 +217,40 @@ sample=>
             Working on adapters for other systems - Sybase, PostgreSQL, Oracle, etc.
           </p>
 				</section>
+
+        <section>
+
+          <section>
+            <h2>Drupal 7 Example</h2>
+            <pre><code contenteditable>
+SELECT DISTINCT node.title AS node_title, 
+                node.nid   AS nid, 
+                node_comment_statistics.comment_count AS 
+                node_comment_statistics_comment_count, 
+                node.created AS node_created 
+FROM   node node 
+       INNER JOIN node_comment_statistics node_comment_statistics 
+         ON node.nid = node_comment_statistics.nid 
+WHERE  (( ( node.status = '1' ) 
+          AND ( node.comment IN ( '2' ) ) 
+          AND ( node.nid >= '111' ) 
+          AND ( node_comment_statistics.comment_count >= '2' ) ))
+ORDER  BY node_created ASC 
+LIMIT  50 offset 0
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Performance</h2>
+            <img src="images/drupal_view_response_time.png">
+          </section>
+
+          <section>
+            <h2>Performance</h2>
+            <img src="images/drupal_view_throughput.png">
+          </section>
+
+        </section>
 
 				<section>
 					<h1>THE END</h1>
