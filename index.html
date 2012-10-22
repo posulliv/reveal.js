@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>Deploying and Building Your First Application with Akiban</title>
+		<title>Introduction to Akiban</title>
 
 		<meta name="description" content="Introdction to Akiban">
 		<meta name="author" content="Padraig O'Sullivan">
@@ -43,16 +43,12 @@
 
 				<section>
 					<h1>Akiban</h1>
-      </section>
-
-				<section>
-					<h2>What's Akiban?</h2>
 					<p>
             Akiban is a new (soon to be fully open source) relational database featuring a unique storage optimization referred to
             as table grouping.
 					</p>
 					<p>
-						<i><small>- <a href="http://posulliv.gihub.com">Padraig O'Sullivan</a> / <a href="http://twitter.com/posulliv">@posulliv</a></small></i>
+						<i><small>- <a href="http://posulliv.github.com">Padraig O'Sullivan</a> / <a href="http://twitter.com/posulliv">@posulliv</a></small></i>
 					</p>
 				</section>
 				
@@ -93,23 +89,98 @@
           </section>
 				</section>
 
-	  		<section>
-	  		  <h2>Installation</h2>
-	  		  <p>
-	  		  	All that is required is Java!
-		  	  </p>
-		  	  <a href="http://www.akiban.com/products/akiban-developer/latest#modal7">
-            <img width="160" height="200" src="images/apple_logo.png" alt="Apple">
-			    </a>
-          <a href="http://www.akiban.com/products/akiban-developer/latest#modal6">
-            <img width="160" height="200" src="images/windows_logo.png" alt="Windows">
-          </a>
-          <a href="http://www.akiban.com/products/akiban-developer/latest#modal9">
-            <img width="160" height="200" src="images/redhat_logo.jpeg" alt="Red Hat">
-          </a>
-          <a href="http://www.akiban.com/products/akiban-developer/latest#modal8">
-            <img width="160" height="200" src="images/ubuntu_logo.gif" alt="Ubuntu">
-          </a>
+        <section>
+          <h2>Nested Result Sets</h2>
+          <br>
+          <pre>sample=> set OutputFormat = 'json';
+SET OutputFormat
+sample=> select ** from "user" where id = 1;
+ {"id":1,"name":"posulliv","email":"padraig@akiban.com","sample.photo":[{"id":1,"user_id":1,"state":"PROFILE","date_added":"2012-10-15 17:02:22","path":"URI_FOR_IMAGE_FILE"}],"sample.post":[{"id":1,"user_id":1,"status":"this is a post!","latitude":"51.8968917","longitude":"-8.4863157"},{"id":2,"user_id":1,"status":"at the brog having a pint!","latitude":"51.8975668","longitude":"-8.4725516"}],"sample.role":[{"user_id":1,"role_name":"admin"}]}
+(1 row)
+
+sample=>
+          </pre>
+        </section>
+
+        <section>
+          <h2>REST Module</h2>
+          <br>
+          <a href="http://localhost:8080/sample.user/1">http://localhost:8080/sample.user/1</a>
+          <p>
+            <img width="400" height="320" src="images/rest_browser.png">
+          </p>
+        </section>
+
+        <section>
+
+          <section>
+            <h2><a href="http://posulliv.github.com/drupal/2012/05/14/drupal-akiban/">Drupal 7 Example</a></h2>
+            <pre><code contenteditable>
+SELECT DISTINCT node.title AS node_title, 
+                node.nid   AS nid, 
+                node_comment_statistics.comment_count AS 
+                node_comment_statistics_comment_count, 
+                node.created AS node_created 
+FROM   node node 
+       INNER JOIN node_comment_statistics node_comment_statistics 
+         ON node.nid = node_comment_statistics.nid 
+WHERE  (( ( node.status = '1' ) 
+          AND ( node.comment IN ( '2' ) ) 
+          AND ( node.nid >= '111' ) 
+          AND ( node_comment_statistics.comment_count >= '2' ) ))
+ORDER  BY node_created ASC 
+LIMIT  50 offset 0
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Performance</h2>
+            <img src="images/drupal_view_response_time.png">
+          </section>
+
+          <section>
+            <h2>Performance</h2>
+            <img src="images/drupal_view_throughput.png">
+          </section>
+
+        </section>
+
+				<section>
+					<h1>PRACTICAL MATTERS</h1>
+          <br><br>
+					<blockquote cite="http://renormalize.org/post/24114496133/impedance-mismatch-peace">
+					 In theory, theory and practice are the same. In practice, they are not.
+					</blockquote>
+				</section>
+
+        <section>
+	  		  <section>
+	  		    <h2>Installation</h2>
+	  		    <p>
+	  		    	All that is required is Java!
+		  	    </p>
+		  	    <a href="http://www.akiban.com/products/akiban-developer/latest#modal7">
+              <img width="160" height="200" src="images/apple_logo.png" alt="Apple">
+			      </a>
+            <a href="http://www.akiban.com/products/akiban-developer/latest#modal6">
+              <img width="160" height="200" src="images/windows_logo.png" alt="Windows">
+            </a>
+            <a href="http://www.akiban.com/products/akiban-developer/latest#modal9">
+              <img width="160" height="200" src="images/redhat_logo.jpeg" alt="Red Hat">
+            </a>
+            <a href="http://www.akiban.com/products/akiban-developer/latest#modal8">
+              <img width="160" height="200" src="images/ubuntu_logo.gif" alt="Ubuntu">
+            </a>
+          </section>
+          <section>
+            <h2>DevOps!</h2>
+            <br>
+            <ul>
+              <li><a href="http://community.opscode.com/cookbooks/akibanserver">Opscode Chef Community Cookbook</a></li>
+              <li><a href="http://github.com/akiban/akiban-server-cookbook">Chef Cookbook Source Code</a></li>
+              <li><a href="http://posulliv.github.com/akiban/2012/08/22/akiban-chef/">In-Depth How-To</a></li>
+            </ul>
+          </section>
         </section>
 
         <section>
@@ -184,28 +255,6 @@ sample=>
           </pre>
         </section>
 
-        <section>
-          <h2>Nested Result Sets</h2>
-          <br>
-          <pre>sample=> set OutputFormat = 'json';
-SET OutputFormat
-sample=> select ** from "user" where id = 1;
- {"id":1,"name":"posulliv","email":"padraig@akiban.com","sample.photo":[{"id":1,"user_id":1,"state":"PROFILE","date_added":"2012-10-15 17:02:22","path":"URI_FOR_IMAGE_FILE"}],"sample.post":[{"id":1,"user_id":1,"status":"this is a post!","latitude":"51.8968917","longitude":"-8.4863157"},{"id":2,"user_id":1,"status":"at the brog having a pint!","latitude":"51.8975668","longitude":"-8.4725516"}],"sample.role":[{"user_id":1,"role_name":"admin"}]}
-(1 row)
-
-sample=>
-          </pre>
-        </section>
-
-        <section>
-          <h2>REST Module</h2>
-          <br>
-          <a href="http://localhost:8080/sample.user/1">http://localhost:8080/sample.user/1</a>
-          <p>
-            <img width="400" height="320" src="images/rest_browser.png">
-          </p>
-        </section>
-
 				<section>
           <h2>Adapters for Other Databases</h2>
           <br><br>
@@ -218,48 +267,19 @@ sample=>
           </p>
 				</section>
 
+
         <section>
-
-          <section>
-            <h2>Drupal 7 Example</h2>
-            <pre><code contenteditable>
-SELECT DISTINCT node.title AS node_title, 
-                node.nid   AS nid, 
-                node_comment_statistics.comment_count AS 
-                node_comment_statistics_comment_count, 
-                node.created AS node_created 
-FROM   node node 
-       INNER JOIN node_comment_statistics node_comment_statistics 
-         ON node.nid = node_comment_statistics.nid 
-WHERE  (( ( node.status = '1' ) 
-          AND ( node.comment IN ( '2' ) ) 
-          AND ( node.nid >= '111' ) 
-          AND ( node_comment_statistics.comment_count >= '2' ) ))
-ORDER  BY node_created ASC 
-LIMIT  50 offset 0
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>Performance</h2>
-            <img src="images/drupal_view_response_time.png">
-          </section>
-
-          <section>
-            <h2>Performance</h2>
-            <img src="images/drupal_view_throughput.png">
-          </section>
-
+          <h2>Typical Drupal Deployment</h2>
         </section>
 
-				<section>
-					<h1>THE END</h1>
-					<h3>padraig@akiban.com</h3>
+        <section>
+          <h1>Questions?</h1>
+          <h3>padraig@akiban.com</h3>
           <h3>#akiban / irc.freenode.net</h3>
-          <h3><a href="http://akiban.com/downloads/">akiban.com/downloads</a></h3>
-          <h3><a href="http://github.com/akiban/">github.com/akiban</a></h3>
+          <h3><a href="http://akiban.com/downloads">akiban.com/downloads</a></h3>
+          <h3><a href="http://github.com/akiban">github.com/akiban</a></h3>
           <h3><a href="http://launchpad.net/akiban">launchpad.net/akiban</a></h3>
-				</section>
+        </section>
 
 			</div>
 			
