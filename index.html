@@ -240,6 +240,32 @@ jds[0]['employees.titles'][0]['title']
           </p>
         </section>
 
+        <section>
+				  <section>
+					  <h2>Group Indexes</h2>
+            <br>
+					  <p>
+              Can contain columns from more than 1 table.
+					  </p>
+            <br>
+            <p>
+              Tables that are in a single branch of a group.
+            </p>
+          </section>
+				  <section>
+					  <h2>Creating Group Indexes</h2>
+            <br>
+					  <p>
+            <pre><code>CREATE INDEX index_name ON table_name
+( 
+  column_name, 
+  ... 
+) USING LEFT | RIGHT JOIN
+            </code></pre>
+					  </p>
+          </section>
+        </section>
+
 				<section>
 					<h2>Execution Plans</h2>
           <br>
