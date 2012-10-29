@@ -106,10 +106,6 @@ end
 				</section>
 
         <section>
-          <section>
-            <h2>Akiban Deployment</h2>
-            <p>DIAGRAM GOES HERE</p>
-          </section>
 	  			<section>
 	  				<h2>Akiban Server Installation</h2>
 	  				<p>
@@ -129,6 +125,10 @@ end
             </a>
 				  </section>
           <section>
+            <h2>Standalone Akiban Deployment</h2>
+            <img src="images/simple_akiban_deploy.png">
+          </section>
+          <section>
             <h2>Akiban Adapter for MySQL Installation</h2>
             <p>
               Installs as a plugin in MySQL 5.5
@@ -139,6 +139,10 @@ end
             <a href="http://www.akiban.com/products/akiban-developer/latest#modal29">
               <img width="160" height="200" src="images/ubuntu_logo.gif" alt="Ubuntu">
             </a>
+          </section>
+          <section>
+            <h2>Akiban with MySQL Deployment</h2>
+            <img src="images/mysql_akiban_deploy.png">
           </section>
           <section>
             <h2>Ubuntu Installation Example</h2>
@@ -158,10 +162,19 @@ echo "install plugin akibandb soname 'libakibandb_engine.so'" | mysql -u root
 
         <section>
           <h2>Deploying Akiban as MySQL Replica</h2>
+          <br>
+          <ol>
+            <li>Spin up regular MySQL slave</li>
+            <li>Install Akiban Server and Akiban Adapter for MySQL</li>
+            <li>Determine table grouping</li>
+            <li>Convert InnoDB/MyISAM tables to Akiban</li>
+            <li>Modify application to send MySQL problem queries to Akiban</li>
+          </ol>
         </section>
 
         <section>
           <h2>Example Deployment (Drupal application)</h2>
+          <img height="500" src="images/drupal_akiban.png">
         </section>
 
 				<section>
@@ -181,6 +194,46 @@ echo "install plugin akibandb soname 'libakibandb_engine.so'" | mysql -u root
           </p>
         </section>
 
+        <section>
+          <h2>System, Session & Status Variables</h2>
+          <br>
+          <p>
+            A number of <a href="http://www.akiban.com/ak-docs/admin/adapter/mysql.vars.html">system variables</a> 
+            for configuring Akiban Adapter for MySQL.
+          </p>
+          <br>
+          </p>
+            Session and status <a href="http://www.akiban.com/ak-docs/admin/adapter/mysql.vars.html">variables</a>
+            for monitoring the Adapter.
+          </p>
+        </section>
+
+        <section>
+          <h2>SHOW ENGINE STATUS</h2>
+          <pre>mysql> SHOW ENGINE akibandb STATUS\G
+*************************** 1. row ***************************
+  Type: AKIBANDB
+  Name:
+Status:
+=====================================
+AkibanDB is alive
+=====================================
+Akiban server connection      : 127.0.0.1:5140
+akiban.admin                  : /etc/akiban/config
+akibandb_version              : 0.6.2-r1068
+akserver.datapath             : /var/lib/akiban
+akserver.host                 : 0.0.0.0
+akserver.max_ais_size_bytes   : 1048576
+akserver.port                 : 5140
+akserver.postgres.port        : 15432
+akserver.postgres.statementCacheCapacity      : 0
+akserver.querylog.enabled     : false
+akserver.querylog.exec_time_threshold : 0
+...
+mysql>
+          </pre>
+        </section>
+
 				<section>
 					<h2>Configuring Akiban Adapter for MySQL</h2>
           <br>
@@ -196,23 +249,26 @@ echo "install plugin akibandb soname 'libakibandb_engine.so'" | mysql -u root
           </p>
         </section>
 
-        <section>
-          <h2>System & Status Variables</h2>
-          <br>
-        </section>
-
 				<section>
 					<h2>Monitoring Akiban Adapter for MySQL</h2>
 					<p>
-            mention existing tools here...
+            Existing MySQL monitoring tools can be used to monitor MySQL slave. 
 					</p>
+          <br>
+          <p>
+            System and status variables from Akiban can be monitored if needed.
+          </p>
+          <br>
+          <p>
+            <a href="https://github.com/akiban/akiban-monitoring">Cacti templates</a> available for monitoring Akiban Server.
+          </p>
         </section>
 
 				<section>
           <h2>Adapters for Other Databases</h2>
           <br><br>
           <p>
-            Adapter exists for MySQL.
+            We covered the Akiban Adapter for MySQL.
           </p>
           <br>
           <p>
