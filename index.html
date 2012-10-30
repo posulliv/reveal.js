@@ -185,7 +185,7 @@ echo "install plugin akibandb soname 'libakibandb_engine.so'" | mysql -u root
 ( 
   ... 
   CONSTRAINT `__akiban_fk` FOREIGN KEY (col) REFERENCES par_tab (par_col)
-)
+) ENGINE=AkibanDB
           </code></pre>
 					</p>
           <br>
@@ -200,8 +200,8 @@ echo "install plugin akibandb soname 'libakibandb_engine.so'" | mysql -u root
           <p>
             A number of <a href="http://www.akiban.com/ak-docs/admin/adapter/mysql.vars.html">system variables</a> 
             for configuring Akiban Adapter for MySQL.
-          </p>
           <br>
+          </p>
           </p>
             Session and status <a href="http://www.akiban.com/ak-docs/admin/adapter/mysql.vars.html">variables</a>
             for monitoring the Adapter.
