@@ -103,6 +103,18 @@ end
             <br>
             <pre>SELECT ** FROM sometable</pre>
           </section>
+          <section>
+            <h2>Nested Result Sets</h2>
+            <br>
+            <pre>sample=> set OutputFormat = 'json';
+SET OutputFormat
+sample=> select ** from "user" where id = 1;
+ {"id":1,"name":"posulliv","email":"padraig@akiban.com","sample.photo":[{"id":1,"user_id":1,"state":"PROFILE","date_added":"2012-10-15 17:02:22","path":"URI_FOR_IMAGE_FILE"}],"sample.post":[{"id":1,"user_id":1,"status":"this is a post!","latitude":"51.8968917","longitude":"-8.4863157"},{"id":2,"user_id":1,"status":"at the brog having a pint!","latitude":"51.8975668","longitude":"-8.4725516"}],"sample.role":[{"user_id":1,"role_name":"admin"}]}
+(1 row)
+
+sample=>
+            </pre>
+          </section>
 				</section>
 
         <section>
